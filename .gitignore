@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.venv/
+venv/
+ENV/
+
+# Data: strictly ignore raw and processed data
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Secrets and environment variables
+.env
+*.env
+.env.*
+!.env.example
+
+# Outputs: ignore large artifacts and generated outputs, keep directory structure
+outputs/*
+!outputs/.gitkeep
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

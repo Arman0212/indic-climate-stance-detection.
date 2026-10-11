@@ -1,0 +1,60 @@
+# Configuration for Hindi & Bengali Climate Change Stance Detection
+# All file paths, column names, model hyperparameters, and global seed are defined here.
+
+project:
+  name: "climate-stance-hi-bn"
+  seed: 42
+  claim: "Climate change and global warming is a serious concern."
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  sample_dir: "data/sample"
+  standin_comments_path: "data/raw/standin_comments.csv"
+  to_label_path: "data/processed/to_label.csv"
+  folds_path: "data/processed/folds.csv"
+  sample_path: "data/sample/sample_comments.csv"
+  processed_sample_path: "data/processed/sample_preprocessed.csv"
+
+  # Standard tabular schema expected across the pipeline
+  columns:
+    id: "id"
+    text: "text"
+    label: "label"
+    video_id: "video_id"
+    query: "query"
+    lang_guess: "lang_guess"
+    annotator1: "label_annotator1"
+    annotator2: "label_annotator2"
+
+labels:
+  classes:
+    - "Favour"
+    - "Against"
+    - "None"
+
+youtube:
+  queries:
+    - "जलवायु परिवर्तन"
+    - "ग्लोबल वार्मिंग"
+    - "জলবায়ু পরিবর্তন"
+    - "বৈশ্বিক উষ্ণতা"
+  target_per_language: 500
+  max_results_per_page: 100
+
+training:
+  n_splits: 5
+  ngram_min: 1
+  ngram_max: 5
+  analyzer: "char"
+  class_weight: "balanced"
+  c_param: 1.0
+  max_iter: 1000
+
+outputs:
+  output_dir: "outputs"
+  predictions_path: "outputs/predictions.csv"
+  oof_probs_path: "outputs/oof_probabilities.npy"
+  results_log_path: "outputs/results_log.csv"
+  confusion_matrix_path: "outputs/confusion_matrix.png"
+  model_path: "outputs/baseline_model.joblib"
